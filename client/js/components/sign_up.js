@@ -34,4 +34,5 @@ function renderSignUp() {
     })
       .then(res => res.json())
       .then(email => state.loggedInUser = email)
+      .then(() => renderPlaylist())
   }
