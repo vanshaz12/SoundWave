@@ -6,6 +6,7 @@ const sessions = require('./middlewares/session')
 
 const playlistController = require('./controllers/playlist_controllers')
 const usersController = require('./controllers/users_controller')
+const sessionsController = require('./controllers/sessions_controller')
 
 
 const app = express()
