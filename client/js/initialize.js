@@ -1,13 +1,12 @@
-
 const state = {
     songs: []
   }
 
-  fetch('/api/songs')
+  fetch('/api/playlist')
     .then(res => res.json())
     .then(songs => {
       state.songs = songs
-      renderTreasureList()
+      renderHomePage()
     })
 
   fetch('/api/sessions')
@@ -17,23 +16,3 @@ const state = {
         state.loggedInUser = data.email
       }
     })
-
-
-
-
-
-
-
-
-
-
-
-
-fetch('/api/sessions')
-  .then(res => res.json())
-  .then(data => {
-    if (data.result === 'successful') {
-      state.loggedInUser = data.email
-    }
-  })
-

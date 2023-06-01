@@ -1,5 +1,3 @@
-const Playlist = require('../models/playlist');
-
 function renderPlaylist(){
     document.querySelector('#page').innerHTML = `
     <section class="playlist">
@@ -7,15 +5,6 @@ function renderPlaylist(){
     </section>
     `
 }
-
-function renderHomePage() {
-  document.querySelector('#page').innerHTML =  `
-  <section class="home">
-  <h2>Home Page</h2>
-  </section>
-  `
-}
-
 function deletePlaylist(event) {
     const deleteBtn = event.target;
     const playlistDOM = deleteBtn.closest('.playlist');
@@ -58,11 +47,11 @@ function updatePlaylist(event) {
     });
 };
 
-// function renderSong() {
-//     return state.
-// }
 
-module.exports = renderPlaylist;
-module.exports = deletePlaylist;
-module.exports = updatePlaylist;
-module.exports = renderHomePage;
+
+module.exports = {
+  renderPlaylist,
+  deletePlaylist,
+  updatePlaylist
+};
+

@@ -28,7 +28,11 @@ function logIn(event) {
       body: JSON.stringify(data)
     })
     .then(res => res.json())
-    .then(email => state.loggedInUser = email)
+    .then(email => {
+      console.log(`email `, email)
+      state.loggedInUser = email})
+    .then(() => renderHomePage())
+
   }
     
 
