@@ -6,6 +6,7 @@ const sessions = require('./middlewares/session')
 
 const playlistController = require('./controllers/playlist_controllers')
 const usersController = require('./controllers/users_controller')
+const sessionsController = require('./controllers/sessions_controller')
 
 const app = express()
 const port = process.env.PORT || 3001
@@ -39,5 +40,6 @@ app.use
 
 
 app.use('/api/users', usersController)
+app.use('/api/sessions', sessionsController)
 
 
