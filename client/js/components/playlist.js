@@ -8,6 +8,14 @@ function renderPlaylist(){
     `
 }
 
+function homePage() {
+    document.querySelector('#page').innerHTML = `
+    <section class="homePage">
+        <h2>Home Page</h2>
+    </section>
+    `
+}
+
 function deletePlaylist(event) {
     const deleteBtn = event.target;
     const playlistDOM = deleteBtn.closest('.playlist');
@@ -50,9 +58,7 @@ function updatePlaylist(event) {
     });
 };
 
-// function renderSong() {
-//     return state.
-// }
+
 
 module.exports = renderPlaylist;
 module.exports = deletePlaylist;
