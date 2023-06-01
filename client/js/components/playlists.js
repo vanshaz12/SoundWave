@@ -65,3 +65,4 @@ function updatePlaylist(event) {
 module.exports = renderPlaylist;
 module.exports = deletePlaylist;
 module.exports = updatePlaylist;
+module.exports = renderHomePage;
