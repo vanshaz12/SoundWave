@@ -8,6 +8,14 @@ function renderPlaylist(){
     `
 }
 
+function renderHomePage() {
+  document.querySelector('#page').innerHTML =  `
+  <section class="home">
+  <h2>Home Page</h2>
+  </section>
+  `
+}
+
 function deletePlaylist(event) {
     const deleteBtn = event.target;
     const playlistDOM = deleteBtn.closest('.playlist');
