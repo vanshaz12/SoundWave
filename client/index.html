@@ -6,8 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sound Wave</title>
+
+    <!-- Material Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
 
+    <!-- our functions -->
+    <script src="/js/initialize.js"></script>
+    <script defer src="/js/components/playlists.js"></script>
+    <script defer src="/js/components/homePage.js"></script>
     <script defer src="/js/components/sign_up.js"></script>
     <script defer src="/js/components/login.js"></script>
 
@@ -16,8 +22,11 @@
     <h1>Sound Wave</h1>
     <nav class="header-nav">
         <ul>
-            <li onClick="renderSignUp()">Sign Up</li>
-            <li onClick="renderLogin()">Log in</li>
+            <li class="material-symbols-outlined add-playlist" onClick="renderPlaylist()">add_circle</li>
+            <li class="material-symbols-outlined update-playlist" onClick="updatePlaylist()">edit</li>
+            <li class="material-symbols-outlined delete-playlist" onClick="deletePlaylist()">delete</li>
+            <li class="material-symbols-outlined sign-up" onClick="renderSignUp()">person_add</li>
+            <li class="material-symbols-outlined login" onClick="renderLogin()">login</li>
         </ul>
     </nav>
 
