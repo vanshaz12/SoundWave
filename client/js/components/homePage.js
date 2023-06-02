@@ -27,7 +27,7 @@ function renderHomePage() {
     const searchInput = document.querySelector('#searchInput');
     const query = searchInput.value;
   
-    const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`;
+    const url = `https://deezerdevs-deezer.p.rapidapi.com/track/${query}`;
     const options = {
       method: 'GET',
       headers: {
