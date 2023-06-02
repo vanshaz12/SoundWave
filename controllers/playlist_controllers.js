@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
   Playlist
       .read()
-      .then(playlists => res.json(playlists))
+      .then(playlists => res.json({data:playlists}))
 })
 
 router.put('/:id', (req, res) => {

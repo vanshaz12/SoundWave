@@ -1,5 +1,3 @@
-const Playlist = require('../models/playlist');
-
 function renderPlaylist(){
     document.querySelector('#page').innerHTML = `
     <section class="playlist">
@@ -7,15 +5,6 @@ function renderPlaylist(){
     </section>
     `
 }
-
-function homePage() {
-    document.querySelector('#page').innerHTML = `
-    <section class="homePage">
-        <h2>Home Page</h2>
-    </section>
-    `
-}
-
 function deletePlaylist(event) {
     const deleteBtn = event.target;
     const playlistDOM = deleteBtn.closest('.playlist');
@@ -60,6 +49,9 @@ function updatePlaylist(event) {
 
 
 
-module.exports = renderPlaylist;
-module.exports = deletePlaylist;
-module.exports = updatePlaylist;
+module.exports = {
+  renderPlaylist,
+  deletePlaylist,
+  updatePlaylist
+};
+

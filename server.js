@@ -4,10 +4,11 @@ const sessions = require('./middlewares/session')
 
 
 
-
+const playlistController = require('./controllers/playlist_controllers')
 const usersController = require('./controllers/users_controller')
 const sessionsController = require('./controllers/sessions_controller')
-const playlistController = require('./controllers/playlist_controllers')
+
+
 
 const app = express()
 const port = process.env.PORT || 3001

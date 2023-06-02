@@ -33,6 +33,8 @@ function renderSignUp() {
       body: JSON.stringify(data)
     })
       .then(res => res.json())
-      .then(email => state.loggedInUser = email)
-      .then(() => renderPlaylist())
+      .then(email => {
+        console.log(`email `, email)
+        state.loggedInUser = email})
+      .then(() => renderHomePage())
   }

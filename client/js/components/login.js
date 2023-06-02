@@ -28,16 +28,12 @@ function logIn(event) {
       body: JSON.stringify(data)
     })
     .then(res => res.json())
-    .then(res => {
-      if (res.error) {
-        renderLogin()
-        renderError(res.error)
-      } else {
-        state.loggedInUser = res
-        renderPlaylist()
-      }
-    }
+    .then(email => {
+      console.log(`email `, email)
+      state.loggedInUser = email})
+    .then(() => renderHomePage())
+  }
     
-  )}
+
     
 
