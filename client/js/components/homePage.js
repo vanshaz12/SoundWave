@@ -16,8 +16,30 @@ function renderHomePage() {
     // Render the list of playlists
     const playlistsListElement = document.querySelector('#playlistsList');
     renderPlaylists(playlistsListElement);
+
+    // Add event listener to search button
+    const searchButton = document.querySelector('#searchButton');
+    searchButton.addEventListener('click', performSearch);
   }
   
+    
+  function performSearch() {
+    const searchInput = document.querySelector('#searchInput');
+    const query = searchInput.value;
+
+    try {
+      const response = fetch(`https://api.deezer.com/search?q=${query}`);
+      const data = response.json();
+      // Process the data from the API response as per your requirements
+      console.log(data);
+    } catch (error) {
+      console.error('Error occurred during search:', error);
+    }
+
+    // Clear the input field
+    searchInput.value = '';
+  }
+
   function createPlaylist(event) {
     event.preventDefault();
     const playlistNameInput = document.querySelector('#playlistNameInput');
