@@ -27,7 +27,16 @@ function renderHomePage() {
     const searchInput = document.querySelector('#searchInput');
     const query = searchInput.value;
   
-    fetch(`https://api.deezer.com/search?q=${query}`)
+    const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '2c83331949msh9aeed50b3100423p1674b1jsn149647df92fb',
+        'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
+      }
+    };
+  
+    fetch(url, options)
       .then(response => response.json())
       .then(data => {
         const searchResults = data.data;
@@ -59,7 +68,7 @@ function renderHomePage() {
   
     // Clear the input field
     searchInput.value = '';
-  }  
+  }
 
   function createPlaylist(event) {
     event.preventDefault();
