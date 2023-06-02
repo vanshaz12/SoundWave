@@ -1,10 +1,4 @@
-function renderPlaylist(){
-    document.querySelector('#page').innerHTML = `
-    <section class="playlist">
-        ${renderSong()}
-    </section>
-    `
-}
+
 function deletePlaylist(event) {
     const deleteBtn = event.target;
     const playlistDOM = deleteBtn.closest('.playlist');
