@@ -3,10 +3,12 @@ const state = {
   }
 
   fetch('/api/playlist')
-    .then(res => res.json())
+    .then(res =>{
+        console.log(res) 
+        return res.json()})
     .then(songs => {
       state.songs = songs
-      renderHomePage()
+    //   renderHomePage()
     })
 
   fetch('/api/sessions')
