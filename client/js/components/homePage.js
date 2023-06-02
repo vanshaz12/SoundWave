@@ -11,6 +11,8 @@ function renderHomePage() {
         <input type="text" id="playlistNameInput" placeholder="Enter playlist name">
         <button type="submit">Create Playlist</button>
       </form>
+      <button onclick="logout()">Logout</button>
+
     `;
   
     // Render the list of playlists
@@ -27,7 +29,16 @@ function renderHomePage() {
     const searchInput = document.querySelector('#searchInput');
     const query = searchInput.value;
   
-    fetch(`https://api.deezer.com/search?q=${query}`)
+    const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`;
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': API_SECRET_KEY,
+        'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
+      }
+    };
+  
+    fetch(url, options)
       .then(response => response.json())
       .then(data => {
         const searchResults = data.data;
@@ -59,7 +70,7 @@ function renderHomePage() {
   
     // Clear the input field
     searchInput.value = '';
-  }  
+  }
 
   function createPlaylist(event) {
     event.preventDefault();
@@ -72,3 +83,18 @@ function renderHomePage() {
     // Clear the input field
     playlistNameInput.value = '';
   }
+
+  function logout() {
+    fetch('/api/sessions', {
+      method: 'DELETE',
+    })
+      .then(res => res.json())
+      .then(() => {
+        state.loggedInUser = '';
+        renderLogin();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+  
