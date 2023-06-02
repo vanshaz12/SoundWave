@@ -1,7 +1,7 @@
 function renderHomePage() {
     const pageElement = document.querySelector('#page');
     pageElement.innerHTML = `
-      <h2>Welcome, ${state.loggedInUser}!</h2>
+      <h2>Welcome, ${state.loggedInUser}</h2>
       <div>
         <input type="text" id="searchInput" placeholder="Search">
         <button id="searchButton">Search</button>
@@ -17,13 +17,20 @@ function renderHomePage() {
   
     // Render the list of playlists
     const playlistsListElement = document.querySelector('#playlist');
-    renderPlaylists(playlistsListElement);
+    renderPlaylist(playlistsListElement);
 
     // Add event listener to search button
     const searchButton = document.querySelector('#searchButton');
     searchButton.addEventListener('click', performSearch);
   }
   
+  function renderPlaylist(){
+    document.querySelector('#page').innerHTML = `
+    <section class="playlist">
+        ${renderSong()}
+    </section>
+    `
+}
     
   function performSearch() {
     const searchInput = document.querySelector('#searchInput');
