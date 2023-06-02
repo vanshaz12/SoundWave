@@ -26,19 +26,40 @@ function renderHomePage() {
   function performSearch() {
     const searchInput = document.querySelector('#searchInput');
     const query = searchInput.value;
-
-    try {
-      const response = fetch(`https://api.deezer.com/search?q=${query}`);
-      const data = response.json();
-      // Process the data from the API response as per your requirements
-      console.log(data);
-    } catch (error) {
-      console.error('Error occurred during search:', error);
-    }
-
+  
+    fetch(`https://api.deezer.com/search?q=${query}`)
+      .then(response => response.json())
+      .then(data => {
+        const searchResults = data.data;
+  
+        // Clear the previous search results
+        const playlistsListElement = document.querySelector('#playlistsList');
+        playlistsListElement.innerHTML = '';
+  
+        // Render each search result
+        searchResults.forEach((result) => {
+          const resultItem = document.createElement('li');
+          resultItem.innerHTML = `
+            <div>
+              <strong>Title:</strong> ${result.title}
+            </div>
+            <div>
+              <strong>Artist:</strong> ${result.artist.name}
+            </div>
+            <div>
+              <strong>Album:</strong> ${result.album.title}
+            </div>
+          `;
+          playlistsListElement.appendChild(resultItem);
+        });
+      })
+      .catch(error => {
+        console.error('Error occurred during search:', error);
+      });
+  
     // Clear the input field
     searchInput.value = '';
-  }
+  }  
 
   function createPlaylist(event) {
     event.preventDefault();
