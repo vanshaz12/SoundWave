@@ -11,6 +11,8 @@ function renderHomePage() {
         <input type="text" id="playlistNameInput" placeholder="Enter playlist name">
         <button type="submit">Create Playlist</button>
       </form>
+      <button onclick="logout()">Logout</button>
+
     `;
   
     // Render the list of playlists
@@ -81,3 +83,18 @@ function renderHomePage() {
     // Clear the input field
     playlistNameInput.value = '';
   }
+
+  function logout() {
+    fetch('/api/sessions', {
+      method: 'DELETE',
+    })
+      .then(res => res.json())
+      .then(() => {
+        state.loggedInUser = '';
+        renderLogin();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+  
