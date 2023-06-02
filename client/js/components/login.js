@@ -34,6 +34,3 @@ function logIn(event) {
     .then(() => renderHomePage())
   }
     
-
-    
-

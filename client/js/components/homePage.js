@@ -29,4 +29,3 @@ function renderHomePage() {
     // Clear the input field
     playlistNameInput.value = '';
   }
-  
