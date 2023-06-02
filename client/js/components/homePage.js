@@ -1,33 +1,31 @@
 function renderHomePage() {
     const pageElement = document.querySelector('#page');
-    pageElement.innerHTML = '';
-  
-    // Render the title
-    const titleElement = document.createElement('h2');
-    titleElement.textContent = 'Home Page';
-    pageElement.appendChild(titleElement);
-  
-    // Render the search bar
-    const searchBarElement = document.createElement('input');
-    searchBarElement.type = 'text';
-    searchBarElement.placeholder = 'Search';
-    pageElement.appendChild(searchBarElement);
+    pageElement.innerHTML = `
+      <h2>Welcome, ${state.loggedInUser}!</h2>
+      <div>
+        <input type="text" id="searchInput" placeholder="Search">
+        <button id="searchButton">Search</button>
+      </div>
+      <ul id="playlistsList"></ul>
+      <form id="createPlaylistForm" onsubmit="createPlaylist(event)">
+        <input type="text" id="playlistNameInput" placeholder="Enter playlist name">
+        <button type="submit">Create Playlist</button>
+      </form>
+    `;
   
     // Render the list of playlists
-    const playlistsElement = document.createElement('ul');
-    state.playlists.forEach(playlist => {
-      const playlistItemElement = document.createElement('li');
-      playlistItemElement.textContent = playlist.name;
-  
-      // Add an event listener to handle clicking on a playlist item
-      playlistItemElement.addEventListener('click', () => {
-        // Call the function to render the playlist page
-        renderPlaylistPage(playlist.id);
-      });
-  
-      playlistsElement.appendChild(playlistItemElement);
-    });
-  
-    pageElement.appendChild(playlistsElement);
+    const playlistsListElement = document.querySelector('#playlistsList');
+    renderPlaylists(playlistsListElement);
   }
   
+  function createPlaylist(event) {
+    event.preventDefault();
+    const playlistNameInput = document.querySelector('#playlistNameInput');
+    const playlistName = playlistNameInput.value;
+  
+    // Perform the playlist creation logic here, e.g., making an API request
+    // Once the playlist is created, you can update the playlists list or perform any other necessary actions
+  
+    // Clear the input field
+    playlistNameInput.value = '';
+  }

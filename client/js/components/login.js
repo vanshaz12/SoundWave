@@ -32,7 +32,5 @@ function logIn(event) {
       console.log(`email `, email)
       state.loggedInUser = email})
     .then(() => renderHomePage())
-
   }
     
-
