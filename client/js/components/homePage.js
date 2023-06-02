@@ -14,7 +14,7 @@ function renderHomePage() {
     `;
   
     // Render the list of playlists
-    const playlistsListElement = document.querySelector('#playlistsList');
+    const playlistsListElement = document.querySelector('#playlist');
     renderPlaylists(playlistsListElement);
 
     // Add event listener to search button
