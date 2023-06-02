@@ -15,7 +15,13 @@ router.post('/', (req, res) => {
       if (user && isValidPassword) {
         req.session.userId = user.id
         res.json({ email: user.email })
+      } else {
+        res.status(401).json({ error: 'Invalid credentials' })
       }
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
     })
 })
 
