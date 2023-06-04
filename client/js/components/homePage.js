@@ -40,7 +40,7 @@ function renderHomePage() {
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': API_SECRET_KEY,
+        'X-RapidAPI-Key': process.env.API_SECRET_KEY,
         'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
       }
     };
