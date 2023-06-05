@@ -22,16 +22,18 @@ const Playlist = {
       .then(dbRes => dbRes.rows);
   },
 
-  readByUserId: (userId) => {
+  readByUserId: (userId, query) => {
     const sql = `
       SELECT *
       FROM playlists
       WHERE user_id = $1
+        AND song_name ILIKE '%' || $2 || '%'
     `;
-
-    return db.query(sql, [userId])
+  
+    return db.query(sql, [userId, query])
       .then(dbRes => dbRes.rows);
   },
+  
 
   delete: (playlistId) => {
     const sql = 'DELETE FROM playlists WHERE playlist_id = $1';
