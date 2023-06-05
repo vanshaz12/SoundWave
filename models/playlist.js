@@ -1,14 +1,14 @@
 const db = require('../db/db');
 
 const Playlist = {
-  create: (songName, artist, album) => {
+  create: (songName, artist, album, userId) => {
     const sql = `
-      INSERT INTO playlists (song_name, artist, album)
-      VALUES ($1, $2, $3)
+      INSERT INTO playlists (song_name, artist, album, user_id)
+      VALUES ($1, $2, $3, $4)
       RETURNING *
     `;
-
-    return db.query(sql, [songName, artist, album])
+  
+    return db.query(sql, [songName, artist, album, userId])
       .then(dbRes => dbRes.rows[0]);
   },
 
@@ -22,18 +22,15 @@ const Playlist = {
       .then(dbRes => dbRes.rows);
   },
 
-  update: (playlistId, songName, artist, album) => {
+  readByUserId: (userId) => {
     const sql = `
-      UPDATE playlists
-      SET song_name = $1,
-          artist = $2,
-          album = $3
-      WHERE playlist_id = $4
-      RETURNING *
+      SELECT *
+      FROM playlists
+      WHERE user_id = $1
     `;
 
-    return db.query(sql, [songName, artist, album, playlistId])
-      .then(dbRes => dbRes.rows[0]);
+    return db.query(sql, [userId])
+      .then(dbRes => dbRes.rows);
   },
 
   delete: (playlistId) => {

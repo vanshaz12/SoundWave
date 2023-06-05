@@ -12,7 +12,7 @@ function renderHomePage() {
       <button type="submit">Create Playlist</button>
     </form>
     <div>
-      <button onclick="renderPlaylist()">View Playlist</button>
+      <button onclick="togglePlaylist()">View Playlist</button>
       <div id="playlistSection"></div>
     </div>
     <button onclick="logout()">Logout</button>
@@ -25,6 +25,16 @@ const searchButton = document.querySelector('#searchButton');
 searchButton.addEventListener('click', performSearch);
 
 console.log('search done')
+}
+
+function togglePlaylist() {
+  const playlistSection = document.querySelector('#playlistSection');
+  if (playlistSection.style.display === 'none') {
+    playlistSection.style.display = 'block';
+    renderPlaylist();
+  } else {
+    playlistSection.style.display = 'none';
+  }
 }
 
 function performSearch() {
@@ -49,23 +59,28 @@ function performSearch() {
       const playlistsListElement = document.querySelector('#playlistsList');
       playlistsListElement.innerHTML = '';
 
-      // Render each search result
-      searchResults.forEach(result => {
-        const resultItem = document.createElement('li');
-        resultItem.innerHTML = `
-          <div>
-            <strong>Title:</strong> ${result.title}
-          </div>
-          <div>
-            <strong>Artist:</strong> ${result.artist.name}
-          </div>
-          <div>
-            <strong>Album:</strong> ${result.album.title}
-          </div>
-          <button class="addButton" onClick="addToPlaylist('${result.title}', '${result.artist.name}', '${result.album.title}')">Add</button>
-        `;
-        playlistsListElement.appendChild(resultItem);
-      });
+      // Generate the table HTML
+      const tableHTML = `
+        <table>
+          <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th>Action</th>
+          </tr>
+          ${searchResults.map(result => `
+            <tr>
+              <td>${result.title}</td>
+              <td>${result.artist.name}</td>
+              <td>${result.album.title}</td>
+              <td><button class="addButton" onClick="addToPlaylist('${result.title}', '${result.artist.name}', '${result.album.title}')">Add</button></td>
+            </tr>
+          `).join('')}
+        </table>
+      `;
+
+      // Set the table HTML as the content of the playlistsList element
+      playlistsListElement.innerHTML = tableHTML;
     })
     .catch(error => {
       console.error('Error occurred during search:', error);
@@ -74,6 +89,7 @@ function performSearch() {
   // Clear the input field
   searchInput.value = '';
 }
+
 
 function addToPlaylist(title, artist, album) {
   const playlistNameInput = document.querySelector('#playlistNameInput');
@@ -106,57 +122,6 @@ function addToPlaylist(title, artist, album) {
   playlistNameInput.value = '';
 }
 
-
-
-
-
-
-// function performSearch() {
-//   const searchInput = document.querySelector('#searchInput');
-//   const query = searchInput.value;
-
-//   const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`;
-//   const options = {
-//     method: 'GET',
-//     headers: {
-//       'X-RapidAPI-Key': '2c83331949msh9aeed50b3100423p1674b1jsn149647df92fb',
-//       'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
-//     }
-//   };
-
-//   fetch(url, options)
-//     .then(response => response.json())
-//     .then(data => {
-//       const searchResults = data.data;
-
-//       // Clear the previous search results
-//       const playlistsListElement = document.querySelector('#playlistsList');
-//       playlistsListElement.innerHTML = '';
-
-//       // Render each search result
-//       searchResults.forEach((result) => {
-//         const resultItem = document.createElement('li');
-//         resultItem.innerHTML = `
-//           <div>
-//             <strong>Title:</strong> ${result.title}
-//           </div>
-//           <div>
-//             <strong>Artist:</strong> ${result.artist.name}
-//           </div>
-//           <div>
-//             <strong>Album:</strong> ${result.album.title}
-//           </div>
-//         `;
-//         playlistsListElement.appendChild(resultItem);
-//       });
-//     })
-//     .catch(error => {
-//       console.error('Error occurred during search:', error);
-//     });
-
-//   // Clear the input field
-//   searchInput.value = '';
-// }
 
 function logout() {
   fetch('/api/sessions', {
