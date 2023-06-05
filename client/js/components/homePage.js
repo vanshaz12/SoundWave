@@ -29,7 +29,7 @@ console.log('search done')
 // renderPlaylists(playlistsListElement);
 }
     
-  function performSearch() {
+function performSearch() {
     const searchInput = document.querySelector('#searchInput');
     const query = searchInput.value;
   
@@ -86,7 +86,7 @@ function performSearch() {
   const options = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '2c83331949msh9aeed50b3100423p1674b1jsn149647df92fb',
+      'X-RapidAPI-Key': process.env.API_SECRET_KEY,
       'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
     }
   };
