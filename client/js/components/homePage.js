@@ -36,11 +36,11 @@ function renderHomePage() {
     const searchInput = document.querySelector('#searchInput');
     const query = searchInput.value;
   
-    const url = `https://deezerdevs-deezer.p.rapidapi.com/track/${query}`;
+    const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`;
     const options = {
       method: 'GET',
       headers: {
-        'X-RapidAPI-Key': API_SECRET_KEY,
+        'X-RapidAPI-Key': process.env.API_SECRET_KEY,
         'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
       }
     };
@@ -48,6 +48,7 @@ function renderHomePage() {
     fetch(url, options)
       .then(response => response.json())
       .then(data => {
+        console
         const searchResults = data.data;
   
         // Clear the previous search results
