@@ -104,4 +104,27 @@ function renderHomePage() {
         console.error(err);
       });
   }
+
+  function addToPlaylist(playlistId, songId) {
+    const data = {
+      playlistId: playlistId,
+      songId: songId,
+    };
+  
+    fetch('/api/playlist/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Handle the response from the server after adding the song to the playlist
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
   

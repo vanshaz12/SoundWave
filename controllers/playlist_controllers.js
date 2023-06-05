@@ -33,4 +33,14 @@ router.delete('/:id', (req, res) => {
     .then(() => res.json({ message: 'Deleted successfully' }))
 });
 
+router.post('/add', (req, res) => {
+  const { playlistId, songId } = req.body;
+
+  // Add the song with the given songId to the playlist with the given playlistId
+  // Perform the necessary database operations to add the song to the playlist
+
+  res.json({ message: 'Song added to playlist successfully' });
+});
+
+
 module.exports = router;

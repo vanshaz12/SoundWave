@@ -40,7 +40,16 @@ const Playlist = {
       const sql = 'DELETE FROM playlists WHERE playlist_id = $1';
   
       return db.query(sql, [playlistId]);
-    }
+    },
+
+    addSong: (playlistId, songId) => {
+      const sql = `
+        INSERT INTO playlist_songs (playlist_id, song_id)
+        VALUES ($1, $2)
+      `;
+    
+      return db.query(sql, [playlistId, songId]);
+    }    
 };
 
 module.exports = Playlist;
