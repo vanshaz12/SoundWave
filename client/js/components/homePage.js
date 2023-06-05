@@ -2,9 +2,10 @@ function renderHomePage() {
   const pageElement = document.querySelector('#page');
   pageElement.innerHTML = `
     <h2>Welcome, ${state.loggedInUser}</h2>
+    <button onclick="renderHomePage()">Home</button>
     <div>
       <input type="text" id="searchInput" placeholder="Search">
-      <button id="searchButton">Search</button>
+      <button id="searchButton">Search</button> 
     </div>
     <ul id="playlistsList"></ul>
     <div>
