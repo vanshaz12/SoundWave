@@ -12,15 +12,15 @@ const Playlist = {
       .then(dbRes => dbRes.rows[0]);
   },
 
-  read: (playlistId) => {
+  read: (userId) => {
     const sql = `
       SELECT *
       FROM playlists
-      WHERE playlist_id = $1
+      WHERE user_id = $1
     `;
 
-    return db.query(sql, [playlistId])
-      .then(dbRes => dbRes.rows[0]);
+    return db.query(sql, [userId])
+      .then(dbRes => dbRes.rows);
   },
 
     update: (playlistId, name) => {

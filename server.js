@@ -33,7 +33,7 @@ app.use(express.json())
 //     |
 //     V
 app.use(sessions)
-app.use('/api/playlist', playlistController)
+app.use('/api/playlists', playlistController)
 app.use('/api/users', usersController)
 app.use('/api/sessions', sessionsController)
 

@@ -37,3 +37,12 @@ router.get('/', (req, res) => {
   })
 
 module.exports = router 
+
+router.delete('/', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.log('Error destroying sessions:', err)
+    }
+  })
+  res.json({ result: 'logged out successfully'})
+})
