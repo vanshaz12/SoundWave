@@ -1,45 +1,72 @@
-/* style.css */
+* {
+  box-sizing: border-box;
+}
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  .navbar {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-  }
-  
-  .navbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar li {
-    display: inline-block;
-    margin-right: 10px;
-  }
-  
-  .navbar li:last-child {
-    margin-right: 0;
-  }
-  
-  .navbar a {
-    color: #fff;
-    text-decoration: none;
-    padding: 5px 10px;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
+  margin: 0 2rem;
+}
+
+form {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+form fieldset {
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+form input,
+form textarea {
+  padding: 0.5rem;
+  width: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f9fafb;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #3b82f6;
+  font-size: 48px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.header-nav {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.header-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.header-nav li {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 18px;
+}
+
+.header-nav li a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3b82f6;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.header-nav li a:hover {
+  background-color: #f59e0b;
+}
