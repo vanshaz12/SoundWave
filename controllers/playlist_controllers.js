@@ -4,16 +4,19 @@ const Playlist = require('../models/playlist');
 
 router.post('/', (req, res) => {
   const name = req.body.name
+  const userId = req.session.userId
 
   Playlist
-      .create(name)
-      .then(playlist => res.json(playlist))
+    .create(name, userId)
+    .then(playlist => res.json(playlist))
 })
 
 router.get('/', (req, res) => {
+  const userId = req.session.userId
+
   Playlist
-      .read()
-      .then(playlists => res.json({data:playlists}))
+    .read(userId)
+    .then(playlists => res.json({ data: playlists }))
 })
 
 router.put('/:id', (req, res) => {
