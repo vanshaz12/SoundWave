@@ -8,17 +8,11 @@ CREATE TABLE users(
   password_digest TEXT
 );
 
-CREATE TABLE songs(
-    song_id SERIAL PRIMARY KEY,
-    name TEXT,
-    artist TEXT,
-    duration INT
-);
 
 CREATE TABLE playlists(
     playlist_id SERIAL PRIMARY KEY,
-    name TEXT,
-    user_id INTEGER REFERENCES users(id)
-
+    song_name TEXT,
+    artist TEXT,
+    album TEXT
 );
 
