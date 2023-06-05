@@ -1,0 +1,25 @@
+/* homePage.css */
+
+.playlist {
+    margin-bottom: 20px;
+  }
+  
+  .playlist h2 {
+    margin-bottom: 10px;
+  }
+  
+  .playlist-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .playlist-item .song-name {
+    font-weight: bold;
+  }
+  
+  .playlist-item .artist {
+    margin-top: 5px;
+    font-style: italic;
+  }
+  
