@@ -8,6 +8,9 @@ fetch('/api/sessions')
     if (data.result === 'successful') {
       state.loggedInUser = data.email;
     }
+  })
+  .catch(err => {
+    console.error(err);
   });
 
 fetch('/api/playlists')
@@ -22,3 +25,4 @@ fetch('/api/playlists')
   .catch(err => {
     console.error(err);
   });
+
