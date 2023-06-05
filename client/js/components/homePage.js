@@ -6,6 +6,7 @@ function renderHomePage() {
       <input type="text" id="searchInput" placeholder="Search">
       <button id="searchButton">Search</button>
     </div>
+    <ul id="playlistsList"></ul>
     <div>
       <button onclick="togglePlaylist()">View Playlist</button>
       <div id="playlistSection"></div>
@@ -85,10 +86,8 @@ function performSearch() {
   searchInput.value = '';
 }
 
-
 function addToPlaylist(title, artist, album) {
-  const playlistNameInput = document.querySelector('#playlistNameInput');
-  const playlistName = playlistNameInput.value;
+  const playlistName = 'Your Playlist Name'; // Replace 'Your Playlist Name' with the desired playlist name
 
   // Perform the logic to add the song to the playlist
   // For example, you can make an API request to add the song to the playlist
@@ -112,9 +111,6 @@ function addToPlaylist(title, artist, album) {
     .catch(err => {
       console.error(err);
     });
-
-  // Clear the input field
-  playlistNameInput.value = '';
 }
 
 
