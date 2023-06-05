@@ -3,18 +3,30 @@ const router = express.Router();
 const Playlist = require('../models/playlist');
 
 router.post('/', (req, res) => {
-  const name = req.body.name
+  const { songName, artist, album } = req.body;
 
-  Playlist
-      .create(name)
-      .then(playlist => res.json(playlist))
-})
+  Playlist.create( songName, artist, album)
+    .then(playlist => {
+      res.status(201).json(playlist);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
+    });
+});
+
+
 
 router.get('/', (req, res) => {
-  Playlist
-      .read()
-      .then(playlists => res.json({data:playlists}))
-})
+  Playlist.read()
+    .then(playlists => {
+      res.json(playlists);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
+    });
+});
 
 router.put('/:id', (req, res) => {
   const playlistId = req.params.id;
