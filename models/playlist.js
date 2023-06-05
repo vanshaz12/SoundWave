@@ -40,7 +40,8 @@ const Playlist = {
       const sql = 'DELETE FROM playlists WHERE playlist_id = $1';
   
       return db.query(sql, [playlistId]);
-    }
+    },
+    
 };
 
 module.exports = Playlist;

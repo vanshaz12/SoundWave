@@ -32,7 +32,6 @@ function viewPlaylist() {
     })
 }
 
-  
 function createPlaylistData(playlistName) {
   console.log('creating playlist')
 

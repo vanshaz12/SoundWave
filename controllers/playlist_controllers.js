@@ -36,4 +36,19 @@ router.delete('/:id', (req, res) => {
     .then(() => res.json({ message: 'Deleted successfully' }))
 });
 
+router.post('/add-song', (req, res) => {
+  const playlistId = req.body.playlistId;
+  const songName = req.body.songName;
+
+  Playlist
+    .create(playlistId, songName)
+    .then(result => {
+      res.json({ message: 'Song added successfully' });
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).json({ error: 'An error occurred while adding the song' });
+    });
+});
+
 module.exports = router;

@@ -1,24 +1,21 @@
 const state = {
-  songs: []
-}
+  songs: [],
+};
 
 fetch('/api/sessions')
-.then(res => res.json())
-.then(data => {
-  if (data.result === 'successful') {
-    state.loggedInUser = data.email
-  }
-})
+  .then(res => res.json())
+  .then(data => {
+    if (data.result === 'successful') {
+      state.loggedInUser = data.email;
+    }
+  });
 
 fetch('/api/playlist')
-  .then(res =>{
-      console.log(res) 
-      return res.json()})
+  .then(res => res.json())
   .then(songs => {
-    state.songs = songs
-    console.log(state)
+    state.songs = songs;
+    console.log(state);
     if (state.loggedInUser) {
-      renderHomePage()
+      renderHomePage();
     }
-  })
-
+  });
