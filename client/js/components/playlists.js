@@ -2,28 +2,24 @@ let query = '';
 
 function renderPlaylist() {
   const playlistSection = document.querySelector('#playlistSection');
-  const query = (document.querySelector('#searchInputPlaylist') || {});
+  const searchInput = document.querySelector('#searchInput');
+  const query = searchInput.value.toLowerCase();
 
   // Clear any existing content in the playlist section
   playlistSection.innerHTML = '';
 
   // Create the search bar
   const searchBarHTML = `
-    <input type="text" id="searchInputPlaylist" placeholder="Search in Playlist">
-    <button id="searchButton">Search</button>
+    <input type="text" id="playlistSearchInput" placeholder="Search in Playlist">
+    <button id="playlistSearchButton" onClick="performPlaylistSearch()">Search</button>
   `;
 
   // Append the search bar to the playlist section
   playlistSection.innerHTML = searchBarHTML;
 
-  // Retrieve the search input and add the event listener
-  const searchInputPlaylist = document.querySelector('#searchInputPlaylist');
-  const searchButton = document.querySelector('#searchButton');
-  searchButton.addEventListener('click', performPlaylistSearch);
+  const searchButton = document.querySelector('#playlistSearchButton');
 
-  const titleHTML = '<h2>Favorites</h2>';
-
-  // Add the About section
+    // Add the About section
   const aboutSectionHTML = `
     <div id="aboutSection">
       <h3>About</h3>
@@ -32,7 +28,6 @@ function renderPlaylist() {
     </div>
   `;
 
-  // Append the About section to the playlist section
   playlistSection.innerHTML += aboutSectionHTML;
 
   // Make a GET request to fetch the playlist data from the server with the query parameter
@@ -42,7 +37,7 @@ function renderPlaylist() {
       // Iterate over the playlist data and create a list item for each song
       const playlistItems = data.map(song => {
         return `<section id="renderList">
-                  <h3>${song.song_name}</h3>
+                  <h2>${song.song_name}</h2>
                   <div>Artist: ${song.artist}</div>
                   <div>Album: ${song.album}</div>
                   <button onclick="deleteSong(${song.playlist_id})">Delete</button>
@@ -67,6 +62,7 @@ function editAboutText() {
     state.aboutText = newText;
   }
 }
+
 
 function performPlaylistSearch() {
   console.log("working")
@@ -93,6 +89,11 @@ function performPlaylistSearch() {
     noResultsMessage.style.display = 'block';
   } 
 }
+
+
+
+
+
 
 function deleteSong(playlistId) {
   fetch(`/api/playlists/${playlistId}`, {
