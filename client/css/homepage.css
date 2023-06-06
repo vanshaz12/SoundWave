@@ -1,5 +1,3 @@
-/* homePage.css */
-
 .playlist {
     margin-bottom: 20px;
   }
@@ -33,6 +31,10 @@
   justify-content: center;
   list-style: none;
   padding: 0;
+}
+
+.header-nav li#homeButton {
+  margin-bottom: 2px;
 }
 
 .header-nav li {
