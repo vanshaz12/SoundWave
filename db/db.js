@@ -1,18 +1,5 @@
 const pg = require('pg')
 
-// // change this to your actual production database connection string
-// const connectionString = process.env.DATABASE_URL;
-
-// const db = new pg.Pool({
-//   connectionString: connectionString,
-//   ssl: {
-//     rejectUnauthorized: false
-//   }
-// });
-
-// module.exports = db;
-
-// change this to your actual local database name
 const localDbName = 'sound_wave'
 
 let db;
