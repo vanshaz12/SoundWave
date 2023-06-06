@@ -28,4 +28,3 @@ fetch('/api/playlists')
   .catch(err => {
     console.error(err);
   });
-

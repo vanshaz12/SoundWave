@@ -114,4 +114,3 @@ function addToPlaylist(title, artist, album) {
     });
 }
 
-
