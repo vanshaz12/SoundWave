@@ -1,6 +1,7 @@
 const state = {
   songs: [],
-  loggedInUser: null
+  loggedInUser: null,
+  aboutText: 'This is my favorite playlist!'
 };
 
 fetch('/api/sessions')
