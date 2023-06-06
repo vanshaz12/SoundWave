@@ -1,5 +1,6 @@
 const state = {
   songs: [],
+  loggedInUser: null
 };
 
 fetch('/api/sessions')
@@ -18,7 +19,8 @@ fetch('/api/playlists')
   .then(songs => {
     state.songs = songs;
     console.log(state);
-    if (state.loggedInUser) {
+    if (state.loggedInUser !== null) {
+      updateNavigationMenu()
       renderHomePage();
     }
   })
