@@ -10,15 +10,15 @@ function renderPlaylist() {
 
   // Create the search bar
   const searchBarHTML = `
-    <input type="text" id="searchInput" placeholder="Search in Playlist">
-    <button id="searchButton">Search</button>
+    <input type="text" id="playlistSearchInput" placeholder="Search in Playlist">
+    <button id="playlistSearchButton" onClick="performPlaylistSearch()">Search</button>
   `;
 
   // Append the search bar to the playlist section
   playlistSection.innerHTML = searchBarHTML;
 
-  const searchButton = document.querySelector('#searchButton');
-  searchButton.addEventListener('click', performPlaylistSearch);
+  const searchButton = document.querySelector('#playlistSearchButton');
+  // searchButton.addEventListener('click', performPlaylistSearch);
 
   // Make a GET request to fetch the playlist data from the server with the query parameter
   fetch(`/api/playlists?query=${query}`)
@@ -45,7 +45,8 @@ function renderPlaylist() {
 
 
 function performPlaylistSearch() {
-  const searchInput = document.querySelector('#searchInput');
+  console.log("working")
+  const searchInput = document.querySelector('#playlistSearchInput');
   const query = searchInput.value.toLowerCase();
 
   const playlistSection = document.querySelector('#playlistSection');
@@ -55,6 +56,7 @@ function performPlaylistSearch() {
     const songName = item.querySelector('h2').textContent.toLowerCase();
 
     if (songName.includes(query)) {
+      console.log(item)
       item.style.display = 'block';
     } else {
       item.style.display = 'none';
@@ -65,9 +67,7 @@ function performPlaylistSearch() {
   const noResultsMessage = document.querySelector('#noResultsMessage');
   if (playlistSection.querySelectorAll('section[style="display: block;"]').length === 0) {
     noResultsMessage.style.display = 'block';
-  } else {
-    noResultsMessage.style.display = 'none';
-  }
+  } 
 }
 
 

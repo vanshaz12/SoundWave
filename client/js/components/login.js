@@ -30,8 +30,8 @@ function logIn(event) {
   })
     .then(res => res.json())
     .then(email => {
-      console.log(`email `, email);
-      state.loggedInUser = email;
+      console.log(`email `, email["email"]);
+      state.loggedInUser = email["email"];
       updateNavigationMenu(); // Update the navigation menu after successful login
       renderHomePage();
     });
@@ -43,7 +43,7 @@ function logout() {
   })
     .then(res => res.json())
     .then(() => {
-      state.loggedInUser = '';
+      state.loggedInUser = null;
       updateNavigationMenu(); // Update the navigation menu after successful logout
       renderLogin();
     })
@@ -52,15 +52,23 @@ function logout() {
     });
 }
 
+
 function updateNavigationMenu() {
+  const navigationMenu = document.querySelector('.header-nav');
   const signUpLink = document.getElementById('signUpLink');
   const loginLink = document.getElementById('loginLink');
 
-  if (state.loggedInUser) {
-    signUpLink.style.display = 'none'; // Hide the "Sign Up" option
-    loginLink.style.display = 'none'; // Hide the "Log In" option
+  if (state.loggedInUser !== null) {
+    console.log('loggedin user', state.loggedInUser)
+    navigationMenu.style.display = 'none'; // Hide the navigation menu
   } else {
+    console.log('logout', state.loggedInUser)
+    navigationMenu.style.display = 'block'; // Show the navigation menu
     signUpLink.style.display = 'block'; // Show the "Sign Up" option
     loginLink.style.display = 'block'; // Show the "Log In" option
   }
 }
+
+
+
+
