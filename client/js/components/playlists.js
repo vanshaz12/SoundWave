@@ -2,23 +2,38 @@ let query = '';
 
 function renderPlaylist() {
   const playlistSection = document.querySelector('#playlistSection');
-  const searchInput = document.querySelector('#searchInput');
-  const query = searchInput.value.toLowerCase();
+  const query = (document.querySelector('#searchInputPlaylist') || {});
 
   // Clear any existing content in the playlist section
   playlistSection.innerHTML = '';
 
   // Create the search bar
   const searchBarHTML = `
-    <input type="text" id="playlistSearchInput" placeholder="Search in Playlist">
-    <button id="playlistSearchButton" onClick="performPlaylistSearch()">Search</button>
+    <input type="text" id="searchInputPlaylist" placeholder="Search in Playlist">
+    <button id="searchButton">Search</button>
   `;
 
   // Append the search bar to the playlist section
   playlistSection.innerHTML = searchBarHTML;
 
-  const searchButton = document.querySelector('#playlistSearchButton');
-  // searchButton.addEventListener('click', performPlaylistSearch);
+  // Retrieve the search input and add the event listener
+  const searchInputPlaylist = document.querySelector('#searchInputPlaylist');
+  const searchButton = document.querySelector('#searchButton');
+  searchButton.addEventListener('click', performPlaylistSearch);
+
+  const titleHTML = '<h2>Favorites</h2>';
+
+  // Add the About section
+  const aboutSectionHTML = `
+    <div id="aboutSection">
+      <h3>About</h3>
+      <p id="aboutText">${state.aboutText}</p>
+      <button onclick="editAboutText()">Edit</button>
+    </div>
+  `;
+
+  // Append the About section to the playlist section
+  playlistSection.innerHTML += aboutSectionHTML;
 
   // Make a GET request to fetch the playlist data from the server with the query parameter
   fetch(`/api/playlists?query=${query}`)
@@ -27,7 +42,7 @@ function renderPlaylist() {
       // Iterate over the playlist data and create a list item for each song
       const playlistItems = data.map(song => {
         return `<section id="renderList">
-                  <h2>${song.song_name}</h2>
+                  <h3>${song.song_name}</h3>
                   <div>Artist: ${song.artist}</div>
                   <div>Album: ${song.album}</div>
                   <button onclick="deleteSong(${song.playlist_id})">Delete</button>
@@ -42,7 +57,16 @@ function renderPlaylist() {
     });
 }
 
+function editAboutText() {
+  const aboutTextElement = document.querySelector('#aboutText');
+  const currentText = aboutTextElement.textContent;
 
+  const newText = prompt('Enter new About text:', currentText);
+  if (newText !== null) {
+    aboutTextElement.textContent = newText;
+    state.aboutText = newText;
+  }
+}
 
 function performPlaylistSearch() {
   console.log("working")
@@ -69,11 +93,6 @@ function performPlaylistSearch() {
     noResultsMessage.style.display = 'block';
   } 
 }
-
-
-
-
-
 
 function deleteSong(playlistId) {
   fetch(`/api/playlists/${playlistId}`, {
